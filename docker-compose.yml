@@ -17,7 +17,7 @@ services:
         - com.df.xForwardedProto=true
         - com.df.redirectWhenHttpProto=true
     volumes:
-      - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/bus/usb:/dev/bus/usb
       - config:/config
       - /etc/localtime:/etc/localtime:ro
 
