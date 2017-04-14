@@ -4,9 +4,9 @@ services:
     image: sdesbure/domoticz
     networks:
       - proxy
-    placement:
-      constraints: [node.labels.zwave == true]
     deploy:
+      placement:
+        constraints: [node.labels.zwave == true]
       replicas: 1
       labels:
         - com.df.notify=true
