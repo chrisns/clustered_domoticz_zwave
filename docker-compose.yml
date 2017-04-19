@@ -14,12 +14,27 @@ services:
         - com.df.serviceDomain=zwave.p.cns.me
         - com.df.servicePath=/
         - com.df.port=8080
-        - com.df.xForwardedProto=true
-        - com.df.redirectWhenHttpProto=true
     volumes:
       - /dev/bus/usb:/dev/bus/usb
       - config:/config
       - /etc/localtime:/etc/localtime:ro
+
+  ozwcp:
+    image: n5qm/ozwcp
+    networks:
+      - proxy
+    deploy:
+      placement:
+        constraints: [node.labels.zwave == true]
+      replicas: 1
+      labels:
+        - com.df.notify=true
+        - com.df.distribute=true
+        - com.df.serviceDomain=ozwcp.p.cns.me
+        - com.df.servicePath=/
+        - com.df.port=8090
+    volumes:
+      - /dev/bus/usb:/dev/bus/usb
 
 networks:
   proxy:
