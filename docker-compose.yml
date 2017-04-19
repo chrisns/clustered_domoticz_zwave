@@ -20,11 +20,6 @@ services:
       - /dev/bus/usb:/dev/bus/usb
       - config:/config
       - /etc/localtime:/etc/localtime:ro
-      - /sys/fs/cgroup/devices/docker:/hostkernel
-    cap_add:
-      - ALL
-      - SYS_ADMIN
-    privileged: true
 
 networks:
   proxy:
