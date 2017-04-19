@@ -20,6 +20,7 @@ services:
       - /dev/bus/usb:/dev/bus/usb
       - config:/config
       - /etc/localtime:/etc/localtime:ro
+      - /sys/fs/cgroup/devices/docker:/hostkernel
 
 networks:
   proxy:
