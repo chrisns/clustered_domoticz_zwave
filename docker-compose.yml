@@ -23,6 +23,8 @@ services:
       - /sys/fs/cgroup/devices/docker:/hostkernel
     cap_add:
       - ALL
+      - SYS_ADMIN
+    privileged: true
 
 networks:
   proxy:
