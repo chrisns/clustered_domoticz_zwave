@@ -19,6 +19,7 @@ services:
         - com.df.serviceDomain=zwave.p.cns.me
         - com.df.servicePath=/
         - com.df.port=8080
+        - com.df.httpsOnly=true
         - com.df.xForwardedProto=true
         - com.df.redirectWhenHttpProto=true
     volumes:
