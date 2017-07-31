@@ -22,7 +22,6 @@ services:
         - com.df.port=8080
         - com.df.httpsOnly=true
         - com.df.xForwardedProto=true
-        - com.df.redirectWhenHttpProto=true
     volumes:
       - /dev/bus/usb:/dev/bus/usb
       - config:/config
