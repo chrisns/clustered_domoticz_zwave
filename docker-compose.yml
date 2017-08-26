@@ -11,7 +11,8 @@ services:
       - proxy
     deploy:
       placement:
-        constraints: [node.labels.zwave == true]
+        constraints:
+          - node.labels.zwave == true
       replicas: 1
       labels:
         - com.df.notify=true
