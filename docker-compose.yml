@@ -22,15 +22,16 @@ services:
         - com.df.port=8080
         - com.df.httpsOnly=true
         - com.df.xForwardedProto=true
-    volumes:
-      - /dev/bus/usb:/dev/bus/usb
-      - config:/config
-      - /etc/localtime:/etc/localtime:ro
+#    volumes:
+#      - /dev/bus/usb:/dev/bus/usb
+#      - config:/config
+#      - /etc/localtime:/etc/localtime:ro
 
 networks:
   proxy:
     external: true
 
-volumes:
-  config:
-    driver: glusterfs
+#volumes:
+#  config:
+#    driver: glusterfs
+#
