@@ -17,7 +17,7 @@ services:
       resources:
         limits:
           cpus: '1'
-          memory: 256M
+          memory: 512M
       labels:
         - com.df.notify=true
         - com.df.distribute=true
