@@ -8,6 +8,7 @@ services:
       timeout: 10s
       retries: 3
     networks:
+      - default
       - proxy
     deploy:
       placement:
@@ -30,9 +31,49 @@ services:
       - config:/config
       - /etc/localtime:/etc/localtime:ro
 
+  mqtt:
+    networks:
+      default:
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 128M
+        reservations:
+          cpus: '0.10'
+          memory: 96M
+      restart_policy:
+        condition: any
+        delay: 5s
+    stop_grace_period: 30s
+    image: pinked/docker-vernemq
+    environment:
+      - DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on
+
+  bridge:
+    image: chrisns/mqtt-iot-bridge
+    read_only: true
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.40'
+          memory: 128M
+    environment:
+      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_IOT_ENDPOINT_HOST=${AWS_IOT_ENDPOINT_HOST}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_SUBSCRIBE=domoticz/in
+      - MQTT_SUBSCRIBE=domoticz/out
+      - MQTT_HOST=mqtt://mqtt
+
 networks:
   proxy:
     external: true
+  default:
+    external: false
 
 volumes:
   config:
