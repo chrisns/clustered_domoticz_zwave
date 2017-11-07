@@ -54,6 +54,9 @@ services:
   bridge:
     image: chrisns/mqtt-iot-bridge
     read_only: true
+    depends_on:
+      - server
+      - mqtt
     deploy:
       replicas: 1
       resources:
